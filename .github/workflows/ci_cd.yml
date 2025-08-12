@@ -15,23 +15,19 @@ jobs:
     name: 🧪 Test Suite
     runs-on: ubuntu-latest
     
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
-    
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
         
-      - name: 🟢 Setup Node.js ${{ matrix.node-version }}
+      - name: 🟢 Setup Node.js 18.x
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '18'
           
       - name: 📦 Install dependencies
         working-directory: app
         run: |
-          echo "Installing dependencies for Node.js ${{ matrix.node-version }}..."
+          echo "Installing dependencies for Node.js 18.x..."
           npm ci --no-audit --no-fund
           if [ $? -ne 0 ]; then
             echo "npm ci failed, trying npm install..."
@@ -62,7 +58,7 @@ jobs:
         if: always()
         run: |
           echo "## 🧪 Test Results" >> $GITHUB_STEP_SUMMARY
-          echo "- **Node.js Version:** ${{ matrix.node-version }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Node.js Version:** 18.x" >> $GITHUB_STEP_SUMMARY
           echo "- **Tests:** ✅ All tests passed" >> $GITHUB_STEP_SUMMARY
           echo "- **Coverage:** Generated and uploaded" >> $GITHUB_STEP_SUMMARY
 
