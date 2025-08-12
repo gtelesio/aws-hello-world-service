@@ -50,12 +50,12 @@ jobs:
           echo "Linting step completed!"
         
       - name: 🧪 Run tests
+        working-directory: app
         run: |
-          echo "Running tests directly..."
+          echo "Running tests directly from app directory..."
           echo "Current directory: $(pwd)"
-          echo "Changing to app directory where Jest is available..."
-          cd app
-          echo "In app directory: $(pwd)"
+          echo "Checking Jest configuration:"
+          ls -la jest.config.js
           echo "Checking if Jest is available:"
           npx jest --version
           echo "Running tests with Jest..."
@@ -63,12 +63,10 @@ jobs:
           echo "Tests completed successfully!"
           
       - name: 📊 Generate coverage report
+        working-directory: app
         run: |
-          echo "Generating coverage report directly..."
+          echo "Generating coverage report from app directory..."
           echo "Current directory: $(pwd)"
-          echo "Changing to app directory where Jest is available..."
-          cd app
-          echo "In app directory: $(pwd)"
           echo "Running Jest with coverage..."
           npx jest --coverage --passWithNoTests
           echo "Coverage report generated successfully!"
