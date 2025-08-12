@@ -28,12 +28,22 @@ jobs:
           
       - name: 🔍 Run linting
         run: |
-          echo "Running ESLint using npm script..."
+          echo "Running ESLint directly..."
           echo "Current directory: $(pwd)"
           echo "Contents of current directory:"
           ls -la
-          echo "Running linting with workspace script..."
-          npm run lint
+          echo "Checking app directory:"
+          ls -la app/
+          echo "Checking app/src directory:"
+          ls -la app/src/ || echo "app/src not found"
+          echo "ESLint version: $(npx eslint --version)"
+          echo "Running ESLint on TypeScript files..."
+          cd app
+          npx eslint src/**/*.ts --format=compact || {
+            echo "ESLint failed, trying alternative approach..."
+            find src -name "*.ts" -type f | head -10
+            npx eslint $(find src -name "*.ts" -type f) --format=compact
+          }
           echo "Linting completed successfully!"
         
       - name: 🧪 Run tests
