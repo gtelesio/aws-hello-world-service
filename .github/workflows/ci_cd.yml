@@ -28,25 +28,12 @@ jobs:
           
       - name: 🔍 Run linting
         run: |
-          echo "Running ESLint in root directory..."
+          echo "Running ESLint using npm script..."
           echo "Current directory: $(pwd)"
           echo "Contents of current directory:"
           ls -la
-          echo "Checking if src directory exists:"
-          if [ -d "src" ]; then
-            echo "src directory found, contents:"
-            ls -la src/
-            echo "Finding TypeScript files in src:"
-            find src -name "*.ts" -type f | head -10
-            echo "ESLint version: $(npx eslint --version)"
-            echo "Running ESLint on found TypeScript files..."
-            npx eslint $(find src -name "*.ts" -type f) --format=compact
-          else
-            echo "src directory not found, searching for TypeScript files in current directory:"
-            find . -name "*.ts" -type f | head -10
-            echo "Running ESLint on all TypeScript files:"
-            npx eslint $(find . -name "*.ts" -type f) --format=compact
-          fi
+          echo "Running linting with workspace script..."
+          npm run lint
           echo "Linting completed successfully!"
         
       - name: 🧪 Run tests
