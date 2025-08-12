@@ -27,10 +27,15 @@ jobs:
       - name: 📦 Install dependencies
         working-directory: app
         run: |
-          echo "Installing dependencies for Node.js 18.x..."
-          npm ci --no-audit --no-fund
-          if [ $? -ne 0 ]; then
-            echo "npm ci failed, trying npm install..."
+          echo "Current directory: $(pwd)"
+          echo "Contents of current directory:"
+          ls -la
+          echo "Checking package-lock.json..."
+          if [ -f "package-lock.json" ]; then
+            echo "package-lock.json found, using npm ci..."
+            npm ci --no-audit --no-fund
+          else
+            echo "package-lock.json not found, using npm install..."
             npm install --no-audit --no-fund
           fi
         
@@ -79,10 +84,15 @@ jobs:
       - name: 📦 Install dependencies
         working-directory: app
         run: |
-          echo "Installing dependencies..."
-          npm ci --no-audit --no-fund
-          if [ $? -ne 0 ]; then
-            echo "npm ci failed, trying npm install..."
+          echo "Current directory: $(pwd)"
+          echo "Contents of current directory:"
+          ls -la
+          echo "Checking package-lock.json..."
+          if [ -f "package-lock.json" ]; then
+            echo "package-lock.json found, using npm ci..."
+            npm ci --no-audit --no-fund
+          else
+            echo "package-lock.json not found, using npm install..."
             npm install --no-audit --no-fund
           fi
         
@@ -115,10 +125,15 @@ jobs:
       - name: 📦 Install dependencies
         working-directory: app
         run: |
-          echo "Installing dependencies..."
-          npm ci --no-audit --no-fund
-          if [ $? -ne 0 ]; then
-            echo "npm ci failed, trying npm install..."
+          echo "Current directory: $(pwd)"
+          echo "Contents of current directory:"
+          ls -la
+          echo "Checking package-lock.json..."
+          if [ -f "package-lock.json" ]; then
+            echo "package-lock.json found, using npm ci..."
+            npm ci --no-audit --no-fund
+          else
+            echo "package-lock.json not found, using npm install..."
             npm install --no-audit --no-fund
           fi
         
@@ -154,10 +169,15 @@ jobs:
       - name: 📦 Install dependencies
         working-directory: app
         run: |
-          echo "Installing dependencies..."
-          npm ci --no-audit --no-fund
-          if [ $? -ne 0 ]; then
-            echo "npm ci failed, trying npm install..."
+          echo "Current directory: $(pwd)"
+          echo "Contents of current directory:"
+          ls -la
+          echo "Checking package-lock.json..."
+          if [ -f "package-lock.json" ]; then
+            echo "package-lock.json found, using npm ci..."
+            npm ci --no-audit --no-fund
+          else
+            echo "package-lock.json not found, using npm install..."
             npm install --no-audit --no-fund
           fi
         
