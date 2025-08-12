@@ -17,6 +17,7 @@
     "lint:fix": "cd app && npm run lint:fix",
     "format": "cd app && npm run format",
     "format:check": "cd app && npm run format:check",
+    "audit": "cd app && npm audit --audit-level=moderate",
     "install:all": "npm install && cd app && npm install",
     "clean": "rm -rf node_modules app/node_modules app/dist app/coverage",
     "setup": "npm run install:all && npm run lint:fix && npm run format"
