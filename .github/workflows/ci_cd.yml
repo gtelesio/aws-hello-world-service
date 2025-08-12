@@ -41,7 +41,11 @@ jobs:
         
       - name: 🔍 Run linting
         working-directory: app
-        run: npm run lint
+        run: |
+          echo "Running ESLint on TypeScript files..."
+          echo "ESLint version: $(npx eslint --version)"
+          echo "Running linting with npm script..."
+          npm run lint
         
       - name: 🧪 Run tests
         working-directory: app
