@@ -46,6 +46,7 @@ jobs:
           echo "ESLint version: $(npx eslint --version)"
           echo "Running linting with npm script..."
           npm run lint
+          echo "Linting completed successfully!"
         
       - name: 🧪 Run tests
         working-directory: app
