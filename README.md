@@ -1,184 +1,184 @@
 # 🚀 AWS Hello World Service
 
-Un servicio "Hello World" implementado siguiendo los principios de **Domain-Driven Design (DDD)** y **Clean Architecture**, desplegado en **AWS ECS** con **Infrastructure as Code** usando **Terraform**.
+A "Hello World" service implemented following **Domain-Driven Design (DDD)** and **Clean Architecture** principles, deployed on **AWS ECS** with **Infrastructure as Code** using **Terraform**.
 
-## 🏗️ Arquitectura
+## 🏗️ Architecture
 
 ### Clean Architecture + DDD
 ```
 src/
-├── domain/           # Entidades y lógica de negocio
-├── application/      # Casos de uso y servicios de aplicación
-├── interfaces/       # Controladores, middlewares y validadores
-├── infrastructure/   # Configuración del servidor y tipos
-└── shared/          # Utilidades y constantes compartidas
+├── domain/           # Business entities and logic
+├── application/      # Use cases and application services
+├── interfaces/       # Controllers, middlewares and validators
+├── infrastructure/   # Server configuration and types
+└── shared/          # Shared utilities and constants
 ```
 
-### Tecnologías
+### Technologies
 - **Backend**: Node.js + TypeScript + Fastify
 - **Testing**: Jest + ts-jest
 - **Linting**: ESLint + Prettier
 - **CI/CD**: GitHub Actions
 - **Git Hooks**: Husky + lint-staged
-- **Containerización**: Docker
-- **Infraestructura**: Terraform
+- **Containerization**: Docker
+- **Infrastructure**: Terraform
 - **AWS**: ECS, ECR, ALB, CloudWatch
 
-## 🚀 Inicio Rápido
+## 🚀 Quick Start
 
-### Prerrequisitos
+### Prerequisites
 - Node.js 18+ 
 - npm 9+
 - Docker
-- AWS CLI configurado
+- AWS CLI configured
 
-### Instalación
+### Installation
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone https://github.com/gtelesio/aws-hello-world-service.git
 cd aws-hello-world-service
 
-# Instalar dependencias
+# Install dependencies
 cd app
 npm install
 
-# Configurar variables de entorno
+# Configure environment variables
 cp env.example .env
-# Editar .env con tus valores
+# Edit .env with your values
 
-# Ejecutar tests
+# Run tests
 npm run test
 
-# Ejecutar en desarrollo
+# Run in development
 npm run dev
 
-# Construir para producción
+# Build for production
 npm run build
 npm start
 ```
 
 ## 🧪 Testing
 
-### Ejecutar Tests
+### Run Tests
 ```bash
-# Todos los tests
+# All tests
 npm run test
 
-# Tests en modo watch
+# Tests in watch mode
 npm run test:watch
 
-# Tests con coverage
+# Tests with coverage
 npm run test:coverage
 ```
 
-### Coverage Actual
+### Current Coverage
 - **Statements**: 79.91%
 - **Branches**: 71.23%
 - **Functions**: 82%
 - **Lines**: 79.82%
 
-## 🔧 Scripts Disponibles
+## 🔧 Available Scripts
 
-### Desarrollo
+### Development
 ```bash
-npm run dev          # Servidor de desarrollo con hot reload
-npm run build        # Construir para producción
-npm run start        # Iniciar servidor de producción
+npm run dev          # Development server with hot reload
+npm run build        # Build for production
+npm run start        # Start production server
 ```
 
 ### Testing
 ```bash
-npm run test         # Ejecutar tests
-npm run test:watch   # Tests en modo watch
-npm run test:coverage # Tests con coverage
+npm run test         # Run tests
+npm run test:watch   # Tests in watch mode
+npm run test:coverage # Tests with coverage
 ```
 
-### Linting y Formateo
+### Linting and Formatting
 ```bash
-npm run lint         # Ejecutar ESLint
-npm run lint:fix     # ESLint con auto-fix
-npm run lint:staged  # ESLint en archivos staged
-npm run format       # Formatear con Prettier
-npm run format:check # Verificar formateo
+npm run lint         # Run ESLint
+npm run lint:fix     # ESLint with auto-fix
+npm run lint:staged  # ESLint on staged files
+npm run format       # Format with Prettier
+npm run format:check # Check formatting
 ```
 
 ## 🐕 Husky Git Hooks
 
-El proyecto utiliza **Husky** para ejecutar automáticamente:
+The project uses **Husky** to automatically execute:
 
 ### Pre-commit
-- Linting en archivos staged
-- Formateo automático
+- Linting on staged files
+- Automatic formatting
 
 ### Pre-push
-- Linting completo
-- Tests completos
-- Verificación de calidad
+- Complete linting
+- Complete tests
+- Quality verification
 
 ## 🚀 GitHub Actions
 
-### Workflows Automatizados
-- **🧪 Test Suite**: Tests en múltiples versiones de Node.js
-- **🔒 Security Scan**: Auditoría de seguridad y Snyk
-- **🏗️ Build Check**: Verificación de build
-- **📊 Code Quality**: ESLint y Prettier
+### Automated Workflows
+- **🧪 Test Suite**: Tests on multiple Node.js versions
+- **🔒 Security Scan**: Security audit and Snyk
+- **🏗️ Build Check**: Build verification
+- **📊 Code Quality**: ESLint and Prettier
 
 ### Triggers
-- Push a `main`, `develop`, `feature/*`, `hotfix/*`
-- Pull Requests a `main`, `develop`
+- Push to `main`, `develop`, `feature/*`, `hotfix/*`
+- Pull Requests to `main`, `develop`
 
 ## 🌐 API Endpoints
 
 ### V1 API
 ```
-GET  /v1/api/hello-world     # Hello World básico
-POST /v1/api/hello-world     # Mensaje personalizado
-GET  /v1/api/languages       # Idiomas soportados
+GET  /v1/api/hello-world     # Basic Hello World
+POST /v1/api/hello-world     # Custom message
+GET  /v1/api/languages       # Supported languages
 GET  /v1/api/health          # Health check
 ```
 
 ### V2 API
 ```
-GET  /v2/api/hello-world     # Hello World con metadatos
-POST /v2/api/hello-world     # Mensaje personalizado avanzado
-GET  /v2/api/languages       # Idiomas soportados
-GET  /v2/api/health          # Health check detallado
+GET  /v2/api/hello-world     # Hello World with metadata
+POST /v2/api/hello-world     # Advanced custom message
+GET  /v2/api/languages       # Supported languages
+GET  /v2/api/health          # Detailed health check
 ```
 
-## 🔐 Variables de Entorno
+## 🔐 Environment Variables
 
-### Configuración del Servidor
+### Server Configuration
 ```bash
-PORT=3000                    # Puerto del servidor
-HOST=0.0.0.0                # Host del servidor
-LOG_LEVEL=info              # Nivel de logging
-NODE_ENV=development        # Ambiente
+PORT=3000                    # Server port
+HOST=0.0.0.0                # Server host
+LOG_LEVEL=info              # Logging level
+NODE_ENV=development        # Environment
 ```
 
 ### AWS Configuration
 ```bash
-AWS_REGION=us-east-1        # Región de AWS
+AWS_REGION=us-east-1        # AWS region
 AWS_ACCESS_KEY_ID=...       # Access Key ID
 AWS_SECRET_ACCESS_KEY=...   # Secret Access Key
 ```
 
-### Ver archivo `env.example` para todas las variables disponibles.
+### See `env.example` file for all available variables.
 
 ## 🐳 Docker
 
-### Construir Imagen
+### Build Image
 ```bash
 docker build -t aws-hello-world-service .
 ```
 
-### Ejecutar Contenedor
+### Run Container
 ```bash
 docker run -p 3000:3000 aws-hello-world-service
 ```
 
-## 🏗️ Infraestructura (Terraform)
+## 🏗️ Infrastructure (Terraform)
 
-### Desplegar Infraestructura
+### Deploy Infrastructure
 ```bash
 cd infrastructure
 terraform init
@@ -186,75 +186,75 @@ terraform plan
 terraform apply
 ```
 
-### Componentes AWS
-- **ECS Cluster**: Servicio containerizado
-- **ECR Repository**: Imágenes Docker
-- **Application Load Balancer**: Balanceo de carga
-- **CloudWatch**: Logs y métricas
-- **IAM**: Roles y políticas con mínimo privilegio
+### AWS Components
+- **ECS Cluster**: Containerized service
+- **ECR Repository**: Docker images
+- **Application Load Balancer**: Load balancing
+- **CloudWatch**: Logs and metrics
+- **IAM**: Roles and policies with minimum privilege
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```
 aws-hello-world-service/
 ├── .github/                 # GitHub Actions
 ├── .husky/                  # Git hooks
-├── app/                     # Código de la aplicación
-│   ├── src/                # Código fuente
-│   ├── package.json        # Dependencias
-│   └── jest.config.js      # Configuración de Jest
-├── infrastructure/          # Código de Terraform
-├── .gitignore              # Archivos ignorados por Git
-├── env.example             # Variables de entorno de ejemplo
-├── HUSKY.md                # Documentación de Husky
-└── README.md               # Este archivo
+├── app/                     # Application code
+│   ├── src/                # Source code
+│   ├── package.json        # Dependencies
+│   └── jest.config.js      # Jest configuration
+├── infrastructure/          # Terraform code
+├── .gitignore              # Files ignored by Git
+├── env.example             # Example environment variables
+├── HUSKY.md                # Husky documentation
+└── README.md               # This file
 ```
 
-## 🧪 Ejecutar Tests
+## 🧪 Run Tests
 
-### Tests Unitarios
+### Unit Tests
 ```bash
 cd app
 npm run test
 ```
 
-### Tests con Coverage
+### Tests with Coverage
 ```bash
 cd app
 npm run test:coverage
 ```
 
-### Tests en Modo Watch
+### Tests in Watch Mode
 ```bash
 cd app
 npm run test:watch
 ```
 
-## 🔍 Linting y Formateo
+## 🔍 Linting and Formatting
 
 ### ESLint
 ```bash
 cd app
-npm run lint        # Verificar
-npm run lint:fix    # Corregir automáticamente
+npm run lint        # Verify
+npm run lint:fix    # Auto-fix
 ```
 
 ### Prettier
 ```bash
 cd app
-npm run format        # Formatear
-npm run format:check  # Verificar formateo
+npm run format        # Format
+npm run format:check  # Check formatting
 ```
 
-## 🚀 Despliegue
+## 🚀 Deployment
 
-### Desarrollo Local
+### Local Development
 ```bash
 cd app
 npm run dev
 ```
 
-### Producción
+### Production
 ```bash
 cd app
 npm run build
@@ -263,77 +263,77 @@ npm start
 
 ### AWS ECS
 ```bash
-# Construir y push imagen
+# Build and push image
 docker build -t aws-hello-world-service .
 docker tag aws-hello-world-service:latest $ECR_REPOSITORY_URI:latest
 docker push $ECR_REPOSITORY_URI:latest
 
-# Desplegar con Terraform
+# Deploy with Terraform
 cd infrastructure
 terraform apply
 ```
 
-## 📊 Monitoreo
+## 📊 Monitoring
 
 ### Health Checks
-- **Endpoint**: `/health` y `/v1/api/health`
-- **Métricas**: Uptime, memoria, CPU
+- **Endpoint**: `/health` and `/v1/api/health`
+- **Metrics**: Uptime, memory, CPU
 - **Logs**: CloudWatch Logs
 
-### Métricas AWS
-- **ECS**: CPU, memoria, contenedores
-- **ALB**: Requests, latencia, errores
-- **CloudWatch**: Logs estructurados
+### AWS Metrics
+- **ECS**: CPU, memory, containers
+- **ALB**: Requests, latency, errors
+- **CloudWatch**: Structured logs
 
-## 🤝 Contribuir
+## 🤝 Contributing
 
-### Flujo de Trabajo
-1. Fork del repositorio
-2. Crear feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit cambios (`git commit -m 'Add amazing feature'`)
-4. Push al branch (`git push origin feature/amazing-feature`)
-5. Abrir Pull Request
+### Workflow
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
 
-### Estándares de Código
-- **TypeScript**: Tipado estricto
-- **ESLint**: Reglas configuradas
-- **Prettier**: Formateo automático
-- **Tests**: Coverage mínimo 80%
-- **Commits**: Convención convencional
+### Code Standards
+- **TypeScript**: Strict typing
+- **ESLint**: Configured rules
+- **Prettier**: Automatic formatting
+- **Tests**: Minimum 80% coverage
+- **Commits**: Conventional convention
 
-## 📝 Licencia
+## 📝 License
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+This project is under the MIT License. See the `LICENSE` file for more details.
 
-## 🆘 Soporte
+## 🆘 Support
 
 ### Issues
 - **Bug Reports**: [GitHub Issues](https://github.com/gtelesio/aws-hello-world-service/issues)
 - **Feature Requests**: [GitHub Issues](https://github.com/gtelesio/aws-hello-world-service/issues)
 
-### Documentación
-- **Husky**: Ver `HUSKY.md`
-- **API**: Ver documentación de endpoints
-- **Infraestructura**: Ver `infrastructure/README.md`
+### Documentation
+- **Husky**: See `HUSKY.md`
+- **API**: See endpoint documentation
+- **Infrastructure**: See `infrastructure/README.md`
 
 ## 🎯 Roadmap
 
-### Próximas Características
-- [ ] **API v3** con GraphQL
-- [ ] **Autenticación** JWT
-- [ ] **Rate Limiting** avanzado
-- [ ] **Métricas** Prometheus
-- [ ] **Tracing** con Jaeger
-- [ ] **Multi-tenancy** soporte
-- [ ] **WebSocket** para tiempo real
+### Upcoming Features
+- [ ] **API v3** with GraphQL
+- [ ] **JWT Authentication**
+- [ ] **Advanced Rate Limiting**
+- [ ] **Prometheus Metrics**
+- [ ] **Tracing** with Jaeger
+- [ ] **Multi-tenancy** support
+- [ ] **WebSocket** for real-time
 
-### Mejoras de Infraestructura
-- [ ] **Auto-scaling** basado en métricas
+### Infrastructure Improvements
+- [ ] **Auto-scaling** based on metrics
 - [ ] **Blue-Green** deployments
 - [ ] **Canary** releases
 - [ ] **Multi-region** deployment
-- [ ] **CDN** con CloudFront
+- [ ] **CDN** with CloudFront
 
 ---
 
-**Desarrollado con ❤️ siguiendo las mejores prácticas de Clean Architecture y DDD**
+**Developed with ❤️ following Clean Architecture and DDD best practices**

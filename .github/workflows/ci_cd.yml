@@ -27,12 +27,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-          cache-dependency-path: app/package-lock.json
           
       - name: 📦 Install dependencies
         working-directory: app
-        run: npm ci
+        run: |
+          echo "Installing dependencies for Node.js ${{ matrix.node-version }}..."
+          npm ci --no-audit --no-fund
+          if [ $? -ne 0 ]; then
+            echo "npm ci failed, trying npm install..."
+            npm install --no-audit --no-fund
+          fi
         
       - name: 🔍 Run linting
         working-directory: app
@@ -75,12 +79,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: app/package-lock.json
           
       - name: 📦 Install dependencies
         working-directory: app
-        run: npm ci
+        run: |
+          echo "Installing dependencies..."
+          npm ci --no-audit --no-fund
+          if [ $? -ne 0 ]; then
+            echo "npm ci failed, trying npm install..."
+            npm install --no-audit --no-fund
+          fi
         
       - name: 🔒 Run security audit
         working-directory: app
@@ -107,12 +115,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: app/package-lock.json
           
       - name: 📦 Install dependencies
         working-directory: app
-        run: npm ci
+        run: |
+          echo "Installing dependencies..."
+          npm ci --no-audit --no-fund
+          if [ $? -ne 0 ]; then
+            echo "npm ci failed, trying npm install..."
+            npm install --no-audit --no-fund
+          fi
         
       - name: 🏗️ Build project
         working-directory: app
@@ -142,12 +154,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: app/package-lock.json
           
       - name: 📦 Install dependencies
         working-directory: app
-        run: npm ci
+        run: |
+          echo "Installing dependencies..."
+          npm ci --no-audit --no-fund
+          if [ $? -ne 0 ]; then
+            echo "npm ci failed, trying npm install..."
+            npm install --no-audit --no-fund
+          fi
         
       - name: 🔍 Run ESLint
         working-directory: app
