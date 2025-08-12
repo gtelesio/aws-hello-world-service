@@ -1,0 +1,11 @@
+# Husky configuration file
+# This file configures Husky Git hooks
+
+# Enable debug mode (set to 1 to enable)
+HUSKY_DEBUG=0
+
+# Skip hooks (set to 1 to disable all hooks)
+HUSKY=1
+
+# Git hooks directory
+GIT_DIR=.git

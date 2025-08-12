@@ -1,0 +1,605 @@
+{
+  "info": {
+    "name": "AWS Hello World Service",
+    "description": "Complete collection to test all endpoints of the Hello World service implemented with DDD and Clean Architecture, including versioned APIs (v1, v2)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "aws-hello-world-service-001",
+    "updatedAt": "2025-01-27T00:00:00.000Z"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string",
+      "description": "Base URL of the service (change for production)"
+    },
+    {
+      "key": "correlationId",
+      "value": "{{$guid}}",
+      "type": "string",
+      "description": "Unique correlation ID for each request"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Generate new correlationId for each request",
+          "pm.globals.set('correlationId', pm.variables.replaceIn('{{$guid}}'));",
+          "",
+          "// Log request",
+          "console.log('Request:', pm.request.name, 'URL:', pm.request.url.toString());"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Automatic tests to validate responses",
+          "pm.test('Status code is 200', function () {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "pm.test('Response has required fields', function () {",
+          "    const jsonData = pm.response.json();",
+          "    pm.expect(jsonData).to.have.property('status');",
+          "    pm.expect(jsonData).to.have.property('message');",
+          "    pm.expect(jsonData).to.have.property('correlationId');",
+          "});",
+          "",
+          "pm.test('Correlation ID matches', function () {",
+          "    const jsonData = pm.response.json();",
+          "    pm.expect(jsonData.correlationId).to.eql(pm.globals.get('correlationId'));",
+          "});",
+          "",
+          "// Log response",
+          "console.log('Response:', pm.response.json());"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "🏠 Root Endpoint",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-correlation-id",
+            "value": "{{correlationId}}",
+            "description": "Correlation ID for tracing"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/",
+          "host": ["{{baseUrl}}"],
+          "path": [""]
+        },
+        "description": "Root endpoint showing service information and available endpoints"
+      },
+      "response": []
+    },
+    {
+      "name": "💚 Health Check (Global)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-correlation-id",
+            "value": "{{correlationId}}",
+            "description": "Correlation ID for tracing"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        },
+        "description": "Global service health check"
+      },
+      "response": []
+    },
+    {
+      "name": "📚 API Versions",
+      "item": [
+        {
+          "name": "V1 API",
+          "item": [
+            {
+              "name": "🌍 Hello World - GET (V1)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-correlation-id",
+                    "value": "{{correlationId}}",
+                    "description": "Correlation ID for tracing"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/hello-world?language=en",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "hello-world"],
+                  "query": [
+                    {
+                      "key": "language",
+                      "value": "en",
+                      "description": "Language for message (en, es, fr, de, it, pt)"
+                    }
+                  ]
+                },
+                "description": "Get Hello World message in V1 API"
+              },
+              "response": []
+            },
+            {
+              "name": "🌍 Hello World - GET (V1) - Spanish",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-correlation-id",
+                    "value": "{{correlationId}}",
+                    "description": "Correlation ID for tracing"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/hello-world?language=es",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "hello-world"],
+                  "query": [
+                    {
+                      "key": "language",
+                      "value": "es",
+                      "description": "Language for message (en, es, fr, de, it, pt)"
+                    }
+                  ]
+                },
+                "description": "Get Hello World message in Spanish using V1 API"
+              },
+              "response": []
+            },
+            {
+              "name": "🌍 Hello World - GET (V1) - French",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-correlation-id",
+                    "value": "{{correlationId}}",
+                    "description": "Correlation ID for tracing"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/hello-world?language=fr",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "hello-world"],
+                  "query": [
+                    {
+                      "key": "language",
+                      "value": "fr",
+                      "description": "Language for message (en, es, fr, de, it, pt)"
+                    }
+                  ]
+                },
+                "description": "Get Hello World message in French using V1 API"
+              },
+              "response": []
+            },
+            {
+              "name": "🌍 Hello World - GET (V1) - German",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-correlation-id",
+                    "value": "{{correlationId}}",
+                    "description": "Correlation ID for tracing"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/hello-world?language=de",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "hello-world"],
+                  "query": [
+                    {
+                      "key": "language",
+                      "value": "de",
+                      "description": "Language for message (en, es, fr, de, it, pt)"
+                    }
+                  ]
+                },
+                "description": "Get Hello World message in German using V1 API"
+              },
+              "response": []
+            },
+            {
+              "name": "🌍 Hello World - GET (V1) - Italian",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-correlation-id",
+                    "value": "{{correlationId}}",
+                    "description": "Correlation ID for tracing"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/hello-world?language=it",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "hello-world"],
+                  "query": [
+                    {
+                      "key": "language",
+                      "value": "it",
+                      "description": "Language for message (en, es, fr, de, it, pt)"
+                    }
+                  ]
+                },
+                "description": "Get Hello World message in Italian using V1 API"
+              },
+              "response": []
+            },
+            {
+              "name": "🌍 Hello World - GET (V1) - Portuguese",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-correlation-id",
+                    "value": "{{correlationId}}",
+                    "description": "Correlation ID for tracing"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/hello-world?language=pt",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "hello-world"],
+                  "query": [
+                    {
+                      "key": "language",
+                      "value": "pt",
+                      "description": "Language for message (en, es, fr, de, it, pt)"
+                    }
+                  ]
+                },
+                "description": "Get Hello World message in Portuguese using V1 API"
+              },
+              "response": []
+            },
+            {
+              "name": "✍️ Custom Message - POST (V1)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-correlation-id",
+                    "value": "{{correlationId}}",
+                    "description": "Correlation ID for tracing"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "Content type"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello from Postman V1!\",\n  \"language\": \"en\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/hello-world",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "hello-world"]
+                },
+                "description": "Create custom message using V1 API"
+              },
+              "response": []
+            },
+            {
+              "name": "🌐 Supported Languages (V1)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-correlation-id",
+                    "value": "{{correlationId}}",
+                    "description": "Correlation ID for tracing"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/hello-world/languages",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "hello-world", "languages"]
+                },
+                "description": "Get supported languages using V1 API"
+              },
+              "response": []
+            },
+            {
+              "name": "💚 Health Check (V1)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-correlation-id",
+                    "value": "{{correlationId}}",
+                    "description": "Correlation ID for tracing"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/health",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "health"]
+                },
+                "description": "Health check using V1 API"
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "V2 API (Enhanced)",
+          "item": [
+            {
+              "name": "🌍 Hello World - GET (V2) - Full Format",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-correlation-id",
+                    "value": "{{correlationId}}",
+                    "description": "Correlation ID for tracing"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v2/hello-world?language=en&format=full",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v2", "hello-world"],
+                  "query": [
+                    {
+                      "key": "language",
+                      "value": "en",
+                      "description": "Language for message (en, es, fr, de, it, pt)"
+                    },
+                    {
+                      "key": "format",
+                      "value": "full",
+                      "description": "Response format (full, minimal)"
+                    }
+                  ]
+                },
+                "description": "Get Hello World message in full format using V2 API"
+              },
+              "response": []
+            },
+            {
+              "name": "🌍 Hello World - GET (V2) - Minimal Format",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-correlation-id",
+                    "value": "{{correlationId}}",
+                    "description": "Correlation ID for tracing"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v2/hello-world?language=es&format=minimal",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v2", "hello-world"],
+                  "query": [
+                    {
+                      "key": "language",
+                      "value": "es",
+                      "description": "Language for message (en, es, fr, de, it, pt)"
+                    },
+                    {
+                      "key": "format",
+                      "value": "minimal",
+                      "description": "Response format (full, minimal)"
+                    }
+                  ]
+                },
+                "description": "Get Hello World message in minimal format using V2 API"
+              },
+              "response": []
+            },
+            {
+              "name": "✍️ Custom Message - POST (V2) - With Metadata",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-correlation-id",
+                    "value": "{{correlationId}}",
+                    "description": "Correlation ID for tracing"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "Content type"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello from Postman V2!\",\n  \"language\": \"en\",\n  \"metadata\": {\n    \"source\": \"postman\",\n    \"version\": \"2.0\",\n    \"category\": \"testing\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/v2/hello-world",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v2", "hello-world"]
+                },
+                "description": "Create custom message with metadata using V2 API"
+              },
+              "response": []
+            },
+            {
+              "name": "🌐 Supported Languages (V2) - Enhanced",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-correlation-id",
+                    "value": "{{correlationId}}",
+                    "description": "Correlation ID for tracing"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v2/hello-world/languages",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v2", "hello-world", "languages"]
+                },
+                "description": "Get enhanced language information using V2 API"
+              },
+              "response": []
+            },
+            {
+              "name": "💚 Health Check (V2) - Enhanced",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-correlation-id",
+                    "value": "{{correlationId}}",
+                    "description": "Correlation ID for tracing"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v2/health",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v2", "health"]
+                },
+                "description": "Enhanced health check using V2 API"
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "❌ Error Testing",
+      "item": [
+        {
+          "name": "❌ Error - Invalid Language",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-correlation-id",
+                "value": "{{correlationId}}",
+                "description": "Correlation ID for tracing"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/hello-world?language=invalid",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "hello-world"],
+              "query": [
+                {
+                  "key": "language",
+                  "value": "invalid",
+                  "description": "Invalid language to test error handling"
+                }
+              ]
+            },
+            "description": "Test error handling with invalid language"
+          },
+          "response": []
+        },
+        {
+          "name": "❌ Error - Invalid JSON",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-correlation-id",
+                "value": "{{correlationId}}",
+                "description": "Correlation ID for tracing"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "Content type"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Invalid JSON\",\n  \"language\": \"en\",\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/hello-world",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "hello-world"]
+            },
+            "description": "Test error handling with invalid JSON"
+          },
+          "response": []
+        },
+        {
+          "name": "❌ Error - 404 Not Found",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-correlation-id",
+                "value": "{{correlationId}}",
+                "description": "Correlation ID for tracing"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/nonexistent",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "nonexistent"]
+            },
+            "description": "Test 404 error handling for nonexistent endpoints"
+          },
+          "response": []
+        },
+        {
+          "name": "❌ Error - Method Not Allowed",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-correlation-id",
+                "value": "{{correlationId}}",
+                "description": "Correlation ID for tracing"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/hello-world",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "hello-world"]
+            },
+            "description": "Test 405 error handling for HTTP methods not allowed"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

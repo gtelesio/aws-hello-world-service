@@ -1,0 +1,2 @@
+# infra/main.yaml
+# Plantilla base para CloudFormation en YAML. Incluir VPC, ECS, ALB, etc.

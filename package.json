@@ -1,0 +1,55 @@
+{
+  "name": "aws-hello-world-service-workspace",
+  "version": "1.0.0",
+  "description": "AWS Hello World Service - Workspace Root",
+  "private": true,
+  "workspaces": [
+    "app"
+  ],
+  "scripts": {
+    "dev": "cd app && npm run dev",
+    "build": "cd app && npm run build",
+    "start": "cd app && npm start",
+    "test": "cd app && npm run test",
+    "test:watch": "cd app && npm run test:watch",
+    "test:coverage": "cd app && npm run test:coverage",
+    "lint": "cd app && npm run lint",
+    "lint:fix": "cd app && npm run lint:fix",
+    "format": "cd app && npm run format",
+    "format:check": "cd app && npm run format:check",
+    "install:all": "npm install && cd app && npm install",
+    "clean": "rm -rf node_modules app/node_modules app/dist app/coverage",
+    "setup": "npm run install:all && npm run lint:fix && npm run format"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "aws",
+    "ecs",
+    "docker",
+    "typescript",
+    "fastify",
+    "ddd",
+    "clean-architecture",
+    "terraform",
+    "jest",
+    "husky"
+  ],
+  "author": "gtelesio",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gtelesio/aws-hello-world-service.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gtelesio/aws-hello-world-service/issues"
+  },
+  "homepage": "https://github.com/gtelesio/aws-hello-world-service#readme"
+}
